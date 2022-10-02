@@ -1,5 +1,5 @@
 import { Component, createSignal } from 'solid-js';
-import { Note } from '../single-note/Note.enum';
+import { Note } from './note.enum';
 import { styled } from 'solid-styled-components';
 
 const NoteContainer = styled('div')`
