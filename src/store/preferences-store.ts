@@ -1,14 +1,16 @@
 import { createStore } from "solid-js/store";
 
 const [preferencesState, setPrefrencesState] = createStore({
-  highlightNaturalNotes: true,
+  highlightNaturalNotes: false,
 });
 
-const setHighlightNaturalNotes = (highlightNaturalNotes: boolean) => {
+const toggleHighlightNaturalNotes = () => {
   setPrefrencesState({
     ...preferencesState,
-    highlightNaturalNotes
+    highlightNaturalNotes: !preferencesState.highlightNaturalNotes
   });
+
+  console.log(preferencesState.highlightNaturalNotes);
 };
 
-export { preferencesState, setHighlightNaturalNotes };
+export { preferencesState, toggleHighlightNaturalNotes };

@@ -5,6 +5,10 @@ import { bassState } from '../../../../store/bass-store';
 const FretLine = styled('div')`
   border-right: 1px solid black;
   height: 100%;
+
+  &:first-child {
+    border-left: 1px solid black;
+  }
 `;
 
 const Bass: Component = () => {

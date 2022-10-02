@@ -3,6 +3,7 @@ import { styled } from 'solid-styled-components';
 
 import Strings from './parts/strings/Strings';
 import Frets from './parts/frets/Frets';
+import Preferences from '../shared/Preferences';
 
 const Bass: Component = () => {
   const Fretboard = styled('div')`
@@ -10,10 +11,13 @@ const Bass: Component = () => {
   `;
 
   return (
-    <Fretboard>
-      <Frets />
-      <Strings />
-    </Fretboard>
+    <>
+      <Preferences />
+      <Fretboard>
+        <Frets />
+        <Strings />
+      </Fretboard>
+    </>
   );
 };
 
