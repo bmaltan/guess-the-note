@@ -1,16 +1,25 @@
 import { createStore } from "solid-js/store";
 
-const [preferencesState, setPrefrencesState] = createStore({
+const [preferencesState, setPrefrencesState] = createStore<PreferenceState>({
   highlightNaturalNotes: false,
+  displayFretMarkers: true,
 });
 
-const toggleHighlightNaturalNotes = () => {
+const togglePreference = (preference: Preference) => {
+  console.log(preference)
   setPrefrencesState({
     ...preferencesState,
-    highlightNaturalNotes: !preferencesState.highlightNaturalNotes
+    [preference]: !preferencesState[preference],
   });
-
-  console.log(preferencesState.highlightNaturalNotes);
 };
 
-export { preferencesState, toggleHighlightNaturalNotes };
+type PreferenceState = {
+  [key in Preference]: boolean;
+};
+
+enum Preference {
+  HighlightNaturalNotes = "highlightNaturalNotes",
+  DisplayFretMarkers = "displayFretMarkers",
+}
+
+export { preferencesState, togglePreference, Preference };

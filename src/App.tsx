@@ -1,5 +1,6 @@
 import { Component, onMount } from 'solid-js';
 import Bass from './components/instruments/Bass';
+import Preferences from './components/shared/Preferences';
 
 const App: Component = () => {
 
@@ -7,7 +8,10 @@ const App: Component = () => {
   })
 
   return (
-    <Bass />
+    <>
+      <Preferences />
+      <Bass />
+    </>
   );
 };
 

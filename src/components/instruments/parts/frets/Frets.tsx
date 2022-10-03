@@ -1,15 +1,8 @@
 import { Component, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { bassState } from '../../../../store/bass-store';
-
-const FretLine = styled('div')`
-  border-right: 1px solid black;
-  height: 100%;
-
-  &:first-child {
-    border-left: 1px solid black;
-  }
-`;
+import FretLine from './FretLine';
+import FretMarkers from './FretMarkers';
 
 const Bass: Component = () => {
   const Container = styled('div')`
@@ -21,11 +14,18 @@ const Bass: Component = () => {
   `;
 
   return (
-    <Container class="FUCK">
-      <For each={[...Array(bassState.numOfNotes)]}>{() =>
-        <FretLine />
-      }</For>
-    </Container>
+    <>
+      <Container>
+        <For each={[...Array(bassState.numOfNotes)]}>{() =>
+          <FretLine />
+        }</For>
+      </Container>
+      <Container>
+        <For each={[...Array(bassState.numOfNotes)]}>{(_fret, i) =>
+          <FretMarkers index={i()}/>
+        }</For>
+      </Container>
+    </>
   );
 };
 

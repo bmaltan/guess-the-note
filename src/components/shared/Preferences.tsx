@@ -1,14 +1,11 @@
 import { Component } from 'solid-js';
-import { toggleHighlightNaturalNotes } from '../../store/preferences-store';
+import { Preference, togglePreference } from '../../store/preferences-store';
 
 const Preferences: Component = () => {
-  const toggleHighlights = () => {
-    toggleHighlightNaturalNotes();
-  }
-
   return (
     <>
-      <button onClick={toggleHighlights}>Toggle highlights</button>
+      <button onClick={() => togglePreference(Preference.HighlightNaturalNotes)}>Toggle natural notes</button>
+      <button onClick={() => togglePreference(Preference.DisplayFretMarkers)}>Toggle fret markers</button>
     </>
   );
 };
