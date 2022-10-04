@@ -12,7 +12,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       padding: 0.5rem;
       height: 1rem;
       line-height: 1rem;
-      width: 2rem;
+      width: 1.25rem;
       text-align: center;
       z-index: 10;
       cursor: pointer;
