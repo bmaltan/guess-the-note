@@ -7,7 +7,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 
   const NoteContainer = styled('div')<{highlighted: boolean}>(
     props => `
-      margin-top: -3.15rem;
+      margin-top: -3.1rem;
       border: 1px solid black;
       padding: 0.5rem;
       height: 1rem;
@@ -20,9 +20,10 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       color: ${props.highlighted ? 'white' : 'black'};
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
+      transition: transform 0.2s;
   
       &:hover {
-        outline: 1px solid black;
+        transform: scale(1.1);
       }
     `
   );
