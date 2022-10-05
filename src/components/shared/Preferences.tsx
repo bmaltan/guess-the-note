@@ -22,11 +22,6 @@ const Preferences: Component = () => {
       >
         Toggle fret markers
       </button>
-      <button 
-        onClick={() => togglePreference(Preference.DisplayFretMarkers)}
-      >
-        Toggle all notes
-      </button>
       <input
         value={instrumentState.numOfFrets}
         onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
