@@ -13,11 +13,13 @@ const setNumOfFrets = (numOfFrets: number) => {
   });
 };
 
-const setFirstNotes = (firstNotes: Note[]) => {
+const setFirstNote = (index: number, firstNote: Note) => {
+  const firstNotes = [...instrumentState.firstNotes];
+  firstNotes[index] = firstNote;
   setInstrumentState({
     ...instrumentState,
     firstNotes
   });
 };
 
-export { instrumentState, setNumOfFrets, setFirstNotes };
+export { instrumentState, setNumOfFrets, setFirstNote };

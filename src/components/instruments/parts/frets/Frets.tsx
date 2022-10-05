@@ -4,7 +4,7 @@ import { instrumentState } from '../../../../store/instrument-store';
 import FretLine from './FretLine';
 import FretMarkers from './FretMarkers';
 
-const Bass: Component = () => {
+const Frets: Component = () => {
   const Container = styled('div')<{numOfFrets: number}>(
     props => `
       display: grid;
@@ -31,4 +31,4 @@ const Bass: Component = () => {
   );
 };
 
-export default Bass;
+export default Frets;
