@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "solid-js": "^1.4.7",
+    "solid-styled-components": "^0.28.4",
     "styled-components": "^5.3.6"
   },
   "resolutions": {
