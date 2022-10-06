@@ -46,7 +46,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       naturalNote={props.note.length === 1}
       onClick={onClick}
     >
-      { props.note }
+      { display() ? props.note : '' }
     </NoteContainer>
   );
 };
