@@ -20,10 +20,7 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
     const indexOfFirstNote = availableNotes.indexOf(firstNote) + 1;
 
     for (let i = 0; i < instrumentState.numOfFrets; i++) {
-      let index = indexOfFirstNote + i;
-      if (index > availableNotes.length - 1) {
-        index = index - availableNotes.length;
-      }
+      let index = (indexOfFirstNote + i) % availableNotes.length;
       notes.push(availableNotes[index]);
     }
 
