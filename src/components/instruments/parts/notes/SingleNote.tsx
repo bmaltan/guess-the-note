@@ -5,7 +5,7 @@ import { preferencesState } from '../../../../store/preferences-store';
 
 const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 
-  const NoteContainer = styled('div')<{highlighted: boolean}>(
+  const NoteContainer = styled('div')<{highlighted: boolean, naturalNote: boolean}>(
     props => `
       margin-top: -3.1rem;
       border: 1px solid black;
@@ -21,6 +21,8 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
       transition: transform 0.2s;
+      font-family: 'Arial';
+      letter-spacing: ${props.naturalNote ? 0 :'-4px'};
   
       &:hover {
         transform: scale(1.1);
@@ -41,9 +43,10 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
   return (
     <NoteContainer 
       highlighted={isHighlighted()}
+      naturalNote={props.note.length === 1}
       onClick={onClick}
     >
-      { display() ? props.note : '' }
+      { props.note }
     </NoteContainer>
   );
 };
