@@ -16,6 +16,10 @@ const Button: Component<ButtonProps> = (props: ButtonProps) => {
     &:hover {
       background: #5e5e5e;
     }
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
   `;
 
   return (

@@ -18,55 +18,67 @@ const Preferences: Component = () => {
   
   return (
     <>
-      <Switch 
-        onClick={() => togglePreference(Preference.HighlightNaturalNotes)}
-        checked={preferencesState.highlightNaturalNotes}
-        label="Toggle natural notes"
-      />
-      <Switch 
-        onClick={() => togglePreference(Preference.DisplayFretMarkers)}
-        checked={preferencesState.displayFretMarkers}
-        label="Toggle fret markers"
-      />
-      <Switch 
-        onClick={() => togglePreference(Preference.LeftHanded)}
-        checked={preferencesState.leftHanded}
-        label="Toggle left-handed"
-      />
-      <FormInput label="Number of frets">
-        <Input 
-          onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
-          min={5}
-          max={24}
-          value={instrumentState.numOfFrets}
-        />
-      </FormInput>
-      <Button
-        onClick={() => removeString()}
-        label="Remove string"
-      />
-      <Button
-        onClick={() => addString()}
-        label="Add string"
-      />
-      <Flex direction="row-reverse">
-        <For each={getFirstNotes()}>{(_, i) =>
-          <FormInput label={`Tune ${getFirstNotes().length - i()}`}>
-            <Select
-              value={instrumentState.firstNotes[i()].note}
-              onChange={(event) => onFirstNoteChange(event, i())}
-            >
-              <For each={availableNotes}>{(note) =>
-                <option value={note}>{note}</option>
-              }</For>
-            </Select>
+      <Flex direction="column">
+        <div>
+          <Switch 
+            onClick={() => togglePreference(Preference.HighlightNaturalNotes)}
+            checked={preferencesState.highlightNaturalNotes}
+            label="Toggle natural notes"
+          />
+          <Switch 
+            onClick={() => togglePreference(Preference.DisplayFretMarkers)}
+            checked={preferencesState.displayFretMarkers}
+            label="Toggle fret markers"
+          />
+          <Switch 
+            onClick={() => togglePreference(Preference.LeftHanded)}
+            checked={preferencesState.leftHanded}
+            label="Toggle left-handed"
+          />
+        </div>
+        <div>
+          <FormInput label="Number of frets">
+            <Input 
+              onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
+              min={5}
+              max={24}
+              value={instrumentState.numOfFrets}
+            />
           </FormInput>
-        }</For>
+        </div>
+        <div>
+          <Button
+            onClick={() => removeString()}
+            label="Remove string"
+          />
+          <Button
+            onClick={() => addString()}
+            label="Add string"
+          />
+        </div>
+        <div>
+          <Flex direction="row-reverse">
+            <For each={getFirstNotes()}>{(_, i) =>
+              <FormInput label={`Tune ${getFirstNotes().length - i()}`}>
+                <Select
+                  value={instrumentState.firstNotes[i()].note}
+                  onChange={(event) => onFirstNoteChange(event, i())}
+                >
+                  <For each={availableNotes}>{(note) =>
+                    <option value={note}>{note}</option>
+                  }</For>
+                </Select>
+              </FormInput>
+            }</For>
+          </Flex>
+        </div>
+        <div>
+          <Button
+            onClick={() => resetNotesFlipped()}
+            label="Reset"
+          />
+        </div>
       </Flex>
-      <Button
-        onClick={() => resetNotesFlipped()}
-        label="Reset"
-      />
     </>
   );
 };
