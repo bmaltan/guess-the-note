@@ -3,11 +3,11 @@ import { styled } from 'solid-styled-components';
 
 const FretLine: Component = () => {
   const FretLine = styled('div')`
-    border-right: 1px solid black;
+    border-right: 0.0625rem solid black;
     height: 100%;
 
     &:first-child {
-      border-left: 1px solid black;
+      border-left: 0.0625rem solid black;
     }
   `;
 

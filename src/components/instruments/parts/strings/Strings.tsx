@@ -10,8 +10,8 @@ const Strings: Component = () => {
         <>
           <String />      
           <Notes 
-            firstNote={note} 
-            stringIndex={i()}
+            firstNote={note.note}
+            stringId={note.id}
           />
         </>
       }</For>

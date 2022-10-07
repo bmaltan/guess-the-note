@@ -10,12 +10,16 @@ body {
   -webkit-tap-highlight-color: transparent; 
 }
 
+* {
+  font-family: inherit;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 37.5rem) {
   body {
     margin: 2rem 1rem;
   }

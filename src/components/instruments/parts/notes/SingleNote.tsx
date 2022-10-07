@@ -9,7 +9,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
   const NoteContainer = styled('div')<NoteContainerProps>(
     props => `
       margin-top: -3.1rem;
-      border: 1px solid black;
+      border: 0.0625rem solid black;
       padding: 0.5rem;
       height: 1rem;
       line-height: 1rem;
@@ -22,7 +22,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
       font-family: 'Arial';
-      letter-spacing: ${props.naturalNote ? 0 :'-4px'};
+      letter-spacing: ${props.naturalNote ? 0 :'-0.25rem'};
       transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
       
       &:hover {
@@ -32,7 +32,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     `
   );
 
-  const [noteId, _] = createSignal(`${props.stringIndex}_${props.noteIndex}`);
+  const [noteId, _] = createSignal(`${props.stringId}_${props.noteIndex}`);
   
   const onClick = () => {
     setNoteFlipped(noteId(), !getNoteFlipped(noteId()));
@@ -64,6 +64,6 @@ interface NoteContainerProps {
 
 interface NoteProps {
   note: Note;
-  stringIndex: number;
+  stringId: string;
   noteIndex: number;
 }

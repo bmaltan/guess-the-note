@@ -4,7 +4,7 @@ import { styled } from 'solid-styled-components';
 
 const String: Component = () => {
   const String = styled('div')`
-    border-bottom: 1px solid black;
+    border-bottom: 0.0625rem solid black;
     margin: 2rem 0;
   `;
 

@@ -10,7 +10,7 @@ const Bass: Component = () => {
   const Fretboard = styled('div')<{numOfFrets: number}>(
     props => `
       position: relative;
-      min-width: ${props.numOfFrets * 80}px;
+      min-width: ${props.numOfFrets * 5}rem;
     `
   );
 
