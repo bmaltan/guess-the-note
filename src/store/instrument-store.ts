@@ -33,6 +33,18 @@ export const getNoteFlipped = (note: string) => {
   return instrumentState.noteFlipped[note];
 };
 
+export const toggleAllNotesFlipped = () => {
+  const noteFlipped = {...instrumentState.noteFlipped};
+  const allNotesFlipped = Object.keys(noteFlipped).every((note) => noteFlipped[note]);
+  Object.keys(noteFlipped).forEach((note) => {
+    noteFlipped[note] = !allNotesFlipped;
+  });
+  setInstrumentState({
+    ...instrumentState,
+    [InstrumentProperty.NoteFlipped]: noteFlipped,
+  });
+}
+
 export const resetNotesFlipped = () => {
   setInstrumentState({
     ...instrumentState,

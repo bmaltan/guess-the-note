@@ -3,6 +3,7 @@ import { Note } from './note.enum';
 import { styled } from 'solid-styled-components';
 import { preferencesState } from '../../../../store/preferences-store';
 import { getNoteFlipped, setNoteFlipped } from '../../../../store/instrument-store';
+import { convertFlatToSharp } from '../../../../utils/utils';
 
 const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 
@@ -22,7 +23,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
       font-family: 'Arial';
-      letter-spacing: ${props.naturalNote ? 0 :'-0.25rem'};
+      letter-spacing: ${(props.naturalNote || preferencesState.displaySharps) ? 0 :'-0.25rem'};
       transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
       
       &:hover {
@@ -41,6 +42,13 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
   const isHighlighted = () => {
     return preferencesState.highlightNaturalNotes && props.note.length === 1;
   }
+
+  const getNoteToDisplay = () => {
+    if (getNoteFlipped(noteId())) {
+      return preferencesState.displaySharps ? convertFlatToSharp(props.note) : props.note;
+    }
+    return '';
+  }
   
   return (
     <NoteContainer 
@@ -49,7 +57,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       leftHanded={preferencesState.leftHanded}
       onClick={onClick}
     >
-      { getNoteFlipped(noteId()) ? props.note : '' }
+      { getNoteToDisplay() }
     </NoteContainer>
   );
 };

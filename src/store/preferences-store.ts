@@ -3,6 +3,7 @@ import { createStore } from "solid-js/store";
 const [preferencesState, setPrefrencesState] = createStore<PreferenceState>({
   highlightNaturalNotes: false,
   displayFretMarkers: true,
+  displaySharps: false,
   leftHanded: false,
 });
 
@@ -16,6 +17,7 @@ const togglePreference = (preference: Preference) => {
 enum Preference {
   HighlightNaturalNotes = 'highlightNaturalNotes',
   DisplayFretMarkers = 'displayFretMarkers',
+  DisplaySharps = 'displaySharps',
   LeftHanded = 'leftHanded',
 }
 
