@@ -14,7 +14,7 @@ const Button: Component<ButtonProps> = (props: ButtonProps) => {
     height: 2rem;
 
     &:hover {
-      background: #e0e0e0;
+      background: #5e5e5e;
     }
   `;
 
