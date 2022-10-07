@@ -5,7 +5,7 @@ import { preferencesState } from '../../../../store/preferences-store';
 
 const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 
-  const NoteContainer = styled('div')<{highlighted: boolean, naturalNote: boolean}>(
+  const NoteContainer = styled('div')<NoteContainerProps>(
     props => `
       margin-top: -3.1rem;
       border: 1px solid black;
@@ -20,12 +20,13 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       color: ${props.highlighted ? 'white' : 'black'};
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
-      transition: transform 0.2s;
       font-family: 'Arial';
       letter-spacing: ${props.naturalNote ? 0 :'-4px'};
-  
+      transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
+      
       &:hover {
-        transform: scale(1.1);
+        transition: transform 0.2s;
+        transform: ${props.leftHanded ? 'scale(-1.1, 1.1)' : 'scale(1.1)'};
       }
     `
   );
@@ -44,6 +45,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     <NoteContainer 
       highlighted={isHighlighted()}
       naturalNote={props.note.length === 1}
+      leftHanded={preferencesState.leftHanded}
       onClick={onClick}
     >
       { display() ? props.note : '' }
@@ -52,6 +54,12 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 };
 
 export default SingleNote;
+
+interface NoteContainerProps {
+  highlighted: boolean;
+  naturalNote: boolean;
+  leftHanded: boolean;
+}
 
 interface NoteProps {
   note: Note;

@@ -4,6 +4,7 @@ import { styled } from 'solid-styled-components';
 import Strings from './parts/strings/Strings';
 import Frets from './parts/frets/Frets';
 import { instrumentState } from '../../store/instrument-store';
+import { preferencesState } from '../../store/preferences-store';
 
 const Bass: Component = () => {
   const Fretboard = styled('div')<{numOfFrets: number}>(
@@ -13,13 +14,16 @@ const Bass: Component = () => {
     `
   );
 
-  const Container = styled('div')`
-    max-width: 100%;
-    overflow-x: auto;
-  `;
+  const Container = styled('div')<{ leftHanded: boolean }>(
+    props => `
+      max-width: 100%;
+      overflow-x: auto;
+      transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
+    `
+  );
 
   return (
-    <Container>
+    <Container leftHanded={preferencesState.leftHanded}>
       <Fretboard numOfFrets={instrumentState.numOfFrets}>
         <Frets />
         <Strings />
