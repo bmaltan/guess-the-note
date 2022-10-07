@@ -56,7 +56,7 @@ export const setFirstNote = (index: number, firstNote: Note) => {
 
 export const addString = () => {
   const firstNotes = [...instrumentState.firstNotes];
-  firstNotes.unshift({ note: Note.E, id: Math.random().toString(36) });
+  firstNotes.unshift({ note: Note.A, id: Math.random().toString(36) });
   console.log(firstNotes)
   setInstrumentState({
     ...instrumentState,

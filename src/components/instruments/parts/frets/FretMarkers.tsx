@@ -7,14 +7,14 @@ const FretMarkers: Component<FretMarkersProps> = (props: FretMarkersProps) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   `;
 
   const FretMarker = styled('div')`
-    background: #434343;
-    height: 1rem;
-    width: 1rem;
-    border-radius: 100%;
+    background: #a1a1a1;
+    height: calc(100% - 3rem);
+    width: 1.25rem;
+    border: 0.125rem solid black;
   `;
 
   const getFretMarkers = (fretIndex: number) => {
