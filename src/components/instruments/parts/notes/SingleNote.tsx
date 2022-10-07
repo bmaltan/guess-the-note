@@ -2,6 +2,7 @@ import { Component, createSignal } from 'solid-js';
 import { Note } from './note.enum';
 import { styled } from 'solid-styled-components';
 import { preferencesState } from '../../../../store/preferences-store';
+import { getNoteFlipped, setNoteFlipped } from '../../../../store/instrument-store';
 
 const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 
@@ -30,11 +31,11 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       }
     `
   );
-  
-  const [display, setDisplay] = createSignal<boolean>(false);
+
+  const [noteId, _] = createSignal(`${props.stringIndex}_${props.noteIndex}`);
   
   const onClick = () => {
-    setDisplay(!display());
+    setNoteFlipped(noteId(), !getNoteFlipped(noteId()));
   }
 
   const isHighlighted = () => {
@@ -48,7 +49,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       leftHanded={preferencesState.leftHanded}
       onClick={onClick}
     >
-      { display() ? props.note : '' }
+      { getNoteFlipped(noteId()) ? props.note : '' }
     </NoteContainer>
   );
 };
@@ -63,4 +64,6 @@ interface NoteContainerProps {
 
 interface NoteProps {
   note: Note;
+  stringIndex: number;
+  noteIndex: number;
 }

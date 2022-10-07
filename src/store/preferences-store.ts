@@ -14,9 +14,9 @@ const togglePreference = (preference: Preference) => {
 };
 
 enum Preference {
-  HighlightNaturalNotes = "highlightNaturalNotes",
-  DisplayFretMarkers = "displayFretMarkers",
-  LeftHanded = "leftHanded",
+  HighlightNaturalNotes = 'highlightNaturalNotes',
+  DisplayFretMarkers = 'displayFretMarkers',
+  LeftHanded = 'leftHanded',
 }
 
 type PreferenceState = {

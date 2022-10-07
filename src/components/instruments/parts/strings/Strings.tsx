@@ -6,10 +6,13 @@ import Notes from '../notes/Notes';
 const Strings: Component = () => {
   return (
     <>
-      <For each={instrumentState.firstNotes}>{(note) =>
+      <For each={instrumentState.firstNotes}>{(note, i) =>
         <>
           <String />      
-          <Notes firstNote={note} />
+          <Notes 
+            firstNote={note} 
+            stringIndex={i()}
+          />
         </>
       }</For>
     </>

@@ -29,8 +29,12 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
 
   return (
     <NotesOnString numOfFrets={instrumentState.numOfFrets}>
-      <For each={getNotes(props.firstNote)}>{(n) =>
-        <SingleNote note={n} />
+      <For each={getNotes(props.firstNote)}>{(n, i) =>
+        <SingleNote 
+          note={n}
+          stringIndex={props.stringIndex}
+          noteIndex={i()}
+        />
       }</For>
     </NotesOnString>
   );
@@ -40,4 +44,5 @@ export default Notes;
 
 interface NotesProps {
   firstNote: Note;
+  stringIndex: number;
 }
