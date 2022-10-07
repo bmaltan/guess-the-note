@@ -1,6 +1,12 @@
 import { Component, For } from 'solid-js';
-import { instrumentState, setFirstNote, setNumOfFrets } from '../../store/instrument-store';
-import { Preference, togglePreference } from '../../store/preferences-store';
+import { addString, getFirstNotes, instrumentState, removeString, resetNotesFlipped, setFirstNote, setNumOfFrets } from '../../store/instrument-store';
+import { Preference, preferencesState, togglePreference } from '../../store/preferences-store';
+import Button from '../../ui-lib/Button';
+import Flex from '../../ui-lib/Flex';
+import FormInput from '../../ui-lib/FormInput';
+import Input from '../../ui-lib/Input';
+import Select from '../../ui-lib/Select';
+import Switch from '../../ui-lib/Switch';
 import { Note } from '../instruments/parts/notes/note.enum';
 
 const Preferences: Component = () => {
@@ -12,39 +18,55 @@ const Preferences: Component = () => {
   
   return (
     <>
-      <button 
+      <Switch 
         onClick={() => togglePreference(Preference.HighlightNaturalNotes)}
-      >
-        Toggle natural notes
-      </button>
-      <button 
-        onClick={() => togglePreference(Preference.DisplayFretMarkers)}
-      >
-        Toggle fret markers
-      </button>
-      <button 
-        onClick={() => togglePreference(Preference.LeftHanded)}
-      >
-        Toggle left-handed
-      </button>
-      <input
-        value={instrumentState.numOfFrets}
-        onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
-        type="number" 
-        min="5" 
-        max="24" 
+        checked={preferencesState.highlightNaturalNotes}
+        label="Toggle natural notes"
       />
-      <For each={instrumentState.firstNotes}>{(_, i) =>
-        <select 
-          name={`String ${i}`}
-          value={instrumentState.firstNotes[i()]}
-          onChange={(event) => onFirstNoteChange(event, i())}
-        >
-          <For each={availableNotes}>{(note) =>
-            <option value={note}>{note}</option>
-          }</For>
-        </select>
-      }</For>
+      <Switch 
+        onClick={() => togglePreference(Preference.DisplayFretMarkers)}
+        checked={preferencesState.displayFretMarkers}
+        label="Toggle fret markers"
+      />
+      <Switch 
+        onClick={() => togglePreference(Preference.LeftHanded)}
+        checked={preferencesState.leftHanded}
+        label="Toggle left-handed"
+      />
+      <Button
+        onClick={() => resetNotesFlipped()}
+        label="Reset"
+      />
+      <Button
+        onClick={() => removeString()}
+        label="Remove string"
+      />
+      <Button
+        onClick={() => addString()}
+        label="Add string"
+      />
+      <FormInput label="Number of frets">
+        <Input 
+          onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
+          min={5}
+          max={24}
+          value={instrumentState.numOfFrets}
+        />
+      </FormInput>
+      <Flex direction="row-reverse">
+        <For each={getFirstNotes()}>{(_, i) =>
+          <FormInput label={`Tune ${getFirstNotes().length - i()}`}>
+            <Select
+              value={instrumentState.firstNotes[i()].note}
+              onChange={(event) => onFirstNoteChange(event, i())}
+            >
+              <For each={availableNotes}>{(note) =>
+                <option value={note}>{note}</option>
+              }</For>
+            </Select>
+          </FormInput>
+        }</For>
+      </Flex>
     </>
   );
 };
