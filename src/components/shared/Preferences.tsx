@@ -33,18 +33,6 @@ const Preferences: Component = () => {
         checked={preferencesState.leftHanded}
         label="Toggle left-handed"
       />
-      <Button
-        onClick={() => resetNotesFlipped()}
-        label="Reset"
-      />
-      <Button
-        onClick={() => removeString()}
-        label="Remove string"
-      />
-      <Button
-        onClick={() => addString()}
-        label="Add string"
-      />
       <FormInput label="Number of frets">
         <Input 
           onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
@@ -53,6 +41,14 @@ const Preferences: Component = () => {
           value={instrumentState.numOfFrets}
         />
       </FormInput>
+      <Button
+        onClick={() => removeString()}
+        label="Remove string"
+      />
+      <Button
+        onClick={() => addString()}
+        label="Add string"
+      />
       <Flex direction="row-reverse">
         <For each={getFirstNotes()}>{(_, i) =>
           <FormInput label={`Tune ${getFirstNotes().length - i()}`}>
@@ -67,6 +63,10 @@ const Preferences: Component = () => {
           </FormInput>
         }</For>
       </Flex>
+      <Button
+        onClick={() => resetNotesFlipped()}
+        label="Reset"
+      />
     </>
   );
 };
