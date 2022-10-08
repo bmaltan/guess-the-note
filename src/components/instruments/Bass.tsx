@@ -7,18 +7,18 @@ import { instrumentState } from '../../store/instrument-store';
 import { preferencesState } from '../../store/preferences-store';
 
 const Bass: Component = () => {
-  const Fretboard = styled('div')<{numOfFrets: number}>(
-    props => `
-      position: relative;
-      min-width: ${props.numOfFrets * 5}rem;
-    `
-  );
-
   const Container = styled('div')<{ leftHanded: boolean }>(
     props => `
       max-width: 100%;
       overflow-x: auto;
       transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
+    `
+  );
+
+  const Fretboard = styled('div')<{numOfFrets: number}>(
+    props => `
+      position: relative;
+      min-width: ${props.numOfFrets * 5}rem;
     `
   );
 

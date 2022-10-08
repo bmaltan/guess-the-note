@@ -1,16 +1,19 @@
 import { createStore } from "solid-js/store";
 import { Note } from "../components/instruments/parts/notes/note.enum";
+import { TuningPreset } from "../shared/Preset";
 
 export const [instrumentState, setInstrumentState] = createStore<InstrumentState>({
   numOfFrets: 12,
-  firstNotes: [
-    { note: Note.G, id: Math.random().toString(36) },
-    { note: Note.D, id: Math.random().toString(36) },
-    { note: Note.A, id: Math.random().toString(36) },
-    { note: Note.E, id: Math.random().toString(36) },
-  ],
+  firstNotes: [],
   noteFlipped: {},
 });
+
+export const applyTuningPreset = (preset: TuningPreset) => {
+  setInstrumentState({
+    ...instrumentState,
+    firstNotes: preset.firstNotes,
+  });
+};
 
 export const setNumOfFrets = (numOfFrets: number) => {
   setInstrumentState({

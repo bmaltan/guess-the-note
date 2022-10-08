@@ -1,5 +1,9 @@
 import { Note } from "../components/instruments/parts/notes/note.enum";
 
+export const generateRandomId = () => {
+  return Math.random().toString(36);
+};
+
 export const convertFlatToSharp = (note: Note) => {
   if (note.length === 1) return note;
 
@@ -13,4 +17,4 @@ export const convertFlatToSharp = (note: Note) => {
   };
 
   return noteMap[noteLetter] || note;
-}
+};

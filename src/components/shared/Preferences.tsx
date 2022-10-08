@@ -1,5 +1,5 @@
 import { Component, For } from 'solid-js';
-import { addString, getFirstNotes, instrumentState, removeString, resetNotesFlipped, setFirstNote, setNumOfFrets, toggleAllNotesFlipped } from '../../store/instrument-store';
+import { addString, getFirstNotes, instrumentState, removeString, resetNotesFlipped, setFirstNote, setNumOfFrets } from '../../store/instrument-store';
 import { Preference, preferencesState, togglePreference } from '../../store/preferences-store';
 import Button from '../../ui-lib/Button';
 import Flex from '../../ui-lib/Flex';
@@ -78,10 +78,10 @@ const Preferences: Component = () => {
           </Flex>
         </div>
         <div>
-          <Button
+          {/* <Button
             onClick={() => toggleAllNotesFlipped()}
             label="Toggle all"
-          />
+          /> */}
           <Button
             onClick={() => resetNotesFlipped()}
             label="Reset"

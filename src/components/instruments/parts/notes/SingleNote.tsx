@@ -6,8 +6,7 @@ import { getNoteFlipped, setNoteFlipped } from '../../../../store/instrument-sto
 import { convertFlatToSharp } from '../../../../utils/utils';
 
 const SingleNote: Component<NoteProps> = (props: NoteProps) => {
-
-  const NoteContainer = styled('div')<NoteContainerProps>(
+  const SingleNote = styled('div')<SingleNoteProps>(
     props => `
       margin-top: -3.1rem;
       border: 0.0625rem solid black;
@@ -23,7 +22,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
       font-family: 'Arial';
-      letter-spacing: ${(props.naturalNote || preferencesState.displaySharps) ? 0 :'-0.25rem'};
+      letter-spacing: ${(props.naturalNote || preferencesState.displaySharps) ? 0 : '-0.25rem'};
       transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
       
       &:hover {
@@ -51,20 +50,20 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
   }
   
   return (
-    <NoteContainer 
+    <SingleNote 
       highlighted={isHighlighted()}
       naturalNote={props.note.length === 1}
       leftHanded={preferencesState.leftHanded}
       onClick={onClick}
     >
       { getNoteToDisplay() }
-    </NoteContainer>
+    </SingleNote>
   );
 };
 
 export default SingleNote;
 
-interface NoteContainerProps {
+interface SingleNoteProps {
   highlighted: boolean;
   naturalNote: boolean;
   leftHanded: boolean;

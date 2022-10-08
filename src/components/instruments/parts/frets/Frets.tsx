@@ -5,7 +5,7 @@ import FretLine from './FretLine';
 import FretMarkers from './FretMarkers';
 
 const Frets: Component = () => {
-  const Container = styled('div')<{numOfFrets: number}>(
+  const Frets = styled('div')<{numOfFrets: number}>(
     props => `
       display: grid;
       grid-template-columns: repeat(${props.numOfFrets}, 1fr);
@@ -17,16 +17,16 @@ const Frets: Component = () => {
 
   return (
     <>
-      <Container numOfFrets={instrumentState.numOfFrets}>
+      <Frets numOfFrets={instrumentState.numOfFrets}>
         <For each={[...Array(instrumentState.numOfFrets)]}>{() =>
           <FretLine />
         }</For>
-      </Container>
-      <Container numOfFrets={instrumentState.numOfFrets}>
+      </Frets>
+      <Frets numOfFrets={instrumentState.numOfFrets}>
         <For each={[...Array(instrumentState.numOfFrets)]}>{(_fret, i) =>
           <FretMarkers index={i()}/>
         }</For>
-      </Container>
+      </Frets>
     </>
   );
 };

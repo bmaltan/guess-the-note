@@ -1,5 +1,4 @@
 import { Component } from 'solid-js';
-
 import { styled } from 'solid-styled-components';
 
 const String: Component = () => {

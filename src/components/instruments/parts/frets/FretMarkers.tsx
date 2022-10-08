@@ -18,18 +18,18 @@ const FretMarkers: Component<FretMarkersProps> = (props: FretMarkersProps) => {
   `;
 
   const getFretMarkers = (fretIndex: number) => {
-    const markers = [3, 5, 7, 9, 15, 17, 19, 21];
-    const doubleMarkers = [12, 24];
-    if (doubleMarkers.includes(fretIndex + 1)) {
+    const noteIndex = (fretIndex + 1) % 12;
+    const markers = [3, 5, 7, 9];
+    const doubleMarkers = [0];
+    if (doubleMarkers.includes(noteIndex)) {
       return <>
         <FretMarker />
         <FretMarker />
       </>;
-    } else if (markers.includes(fretIndex + 1)) {
+    } else if (markers.includes(noteIndex)) {
       return <FretMarker />;
     }
   }
-
 
   return (
     <FretMarkerContainer>

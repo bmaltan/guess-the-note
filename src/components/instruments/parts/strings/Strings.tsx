@@ -6,7 +6,7 @@ import Notes from '../notes/Notes';
 const Strings: Component = () => {
   return (
     <>
-      <For each={instrumentState.firstNotes}>{(note, i) =>
+      <For each={instrumentState.firstNotes}>{(note) =>
         <>
           <String />      
           <Notes 
