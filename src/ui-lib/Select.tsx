@@ -8,7 +8,7 @@ const Select: Component<SelectProps> = (props: SelectProps) => {
     font-size: 1rem;
     border: none;
   `;
-  
+
   return (
     <Select
       value={props.value}

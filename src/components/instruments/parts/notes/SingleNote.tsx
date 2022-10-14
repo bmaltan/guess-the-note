@@ -32,8 +32,8 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     `
   );
 
-  const [noteId, _] = createSignal(`${props.stringId}_${props.noteIndex}`);
-  
+  const [noteId] = createSignal(`${props.stringId}_${props.noteIndex}`);
+
   const onClick = () => {
     setNoteFlipped(noteId(), !getNoteFlipped(noteId()));
   }
@@ -48,9 +48,9 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     }
     return '';
   }
-  
+
   return (
-    <SingleNote 
+    <SingleNote
       highlighted={isHighlighted()}
       naturalNote={props.note.length === 1}
       leftHanded={preferencesState.leftHanded}

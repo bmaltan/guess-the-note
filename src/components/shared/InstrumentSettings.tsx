@@ -13,12 +13,12 @@ const InstrumentSettings: Component = () => {
   const onFirstNoteChange = (event: Event, index: number) => {
     setFirstNote(index, event?.target?.value as Note);
   }
-  
+
   return (
     <Flex direction="column">
       <div>
         <FormInput label="Number of frets">
-          <Input 
+          <Input
             onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
             min={5}
             max={24}

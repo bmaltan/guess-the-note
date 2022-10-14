@@ -9,6 +9,7 @@ const Flex: Component<GridProps> = (props: GridProps) => {
       display: grid;
       gap: 1rem;
       grid-template-columns: ${props.gridTemplateColumns};
+      grid-template-rows: ${props.gridTemplateRows};
     `
   );
 
@@ -24,4 +25,5 @@ export default Flex;
 interface GridProps {
   children: JSX.Element;
   gridTemplateColumns?: string;
+  gridTemplateRows?: string;
 }

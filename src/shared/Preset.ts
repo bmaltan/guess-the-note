@@ -6,4 +6,4 @@ export interface TuningPreset {
     note: Note;
     id: string;
   }[];
-};
+}

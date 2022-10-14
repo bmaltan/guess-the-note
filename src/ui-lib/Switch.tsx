@@ -12,8 +12,8 @@ const Switch: Component<SwitchProps> = (props: SwitchProps) => {
         checked={props.checked}
         onClick={props.onClick}
       />
-      <label 
-        class="form-check-label" 
+      <label
+        class="form-check-label"
         for={id}
       >
         { props.label }

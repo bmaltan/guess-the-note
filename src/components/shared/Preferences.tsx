@@ -8,22 +8,22 @@ const Preferences: Component = () => {
     <>
       <Flex direction="column">
         <div>
-          <Switch 
+          <Switch
             onClick={() => togglePreference(Preference.HighlightNaturalNotes)}
             checked={preferencesState.highlightNaturalNotes}
             label="Toggle natural notes"
           />
-          <Switch 
+          <Switch
             onClick={() => togglePreference(Preference.DisplayFretMarkers)}
             checked={preferencesState.displayFretMarkers}
             label="Toggle fret markers"
           />
-          <Switch 
+          <Switch
             onClick={() => togglePreference(Preference.DisplaySharps)}
             checked={preferencesState.displaySharps}
             label="Toggle sharp/flat"
           />
-          <Switch 
+          <Switch
             onClick={() => togglePreference(Preference.LeftHanded)}
             checked={preferencesState.leftHanded}
             label="Toggle left-handed"

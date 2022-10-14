@@ -11,7 +11,7 @@ const App: Component = () => {
   onMount(() => {
     applyTuningPreset(bassPresets.standard)
   });
-  
+
   return (
     <>
       <Flex direction="column">

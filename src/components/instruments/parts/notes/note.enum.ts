@@ -11,4 +11,4 @@ export enum Note {
   F = 'F',
   Gb = 'G♭',
   G = 'G',
-};
+}

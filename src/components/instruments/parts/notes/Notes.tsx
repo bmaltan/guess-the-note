@@ -20,7 +20,7 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
     const indexOfFirstNote = availableNotes.indexOf(firstNote) + 1;
 
     for (let i = 0; i < instrumentState.numOfFrets; i++) {
-      let index = (indexOfFirstNote + i) % availableNotes.length;
+      const index = (indexOfFirstNote + i) % availableNotes.length;
       notes.push(availableNotes[index]);
     }
 
@@ -30,7 +30,7 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
   return (
     <NotesOnString numOfFrets={instrumentState.numOfFrets}>
       <For each={getNotes(props.firstNote)}>{(n, i) =>
-        <SingleNote 
+        <SingleNote
           note={n}
           stringId={props.stringId}
           noteIndex={i()}

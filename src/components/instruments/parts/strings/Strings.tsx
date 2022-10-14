@@ -8,8 +8,8 @@ const Strings: Component = () => {
     <>
       <For each={instrumentState.firstNotes}>{(note) =>
         <>
-          <String />      
-          <Notes 
+          <String />
+          <Notes
             firstNote={note.note}
             stringId={note.id}
           />
