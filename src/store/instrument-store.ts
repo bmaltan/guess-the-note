@@ -1,6 +1,8 @@
 import { createStore } from "solid-js/store";
 import { Note } from "../components/instruments/parts/notes/note.enum";
+import { FirstNote } from "../shared/FirstNote";
 import { TuningPreset } from "../shared/Preset";
+import { generateRandomId } from "../utils/utils";
 
 export const [instrumentState, setInstrumentState] = createStore<InstrumentState>({
   numOfFrets: 12,
@@ -71,7 +73,11 @@ export const setFirstNote = (index: number, firstNote: Note) => {
 
 export const addString = () => {
   const firstNotes = [...instrumentState.firstNotes];
-  firstNotes.unshift({ note: Note.A, id: Math.random().toString(36) });
+  firstNotes.unshift({
+    note: Note.A,
+    id: generateRandomId(),
+    string: firstNotes.length,
+  });
   setInstrumentState({
     ...instrumentState,
     [InstrumentProperty.FirstNotes]: firstNotes,
@@ -95,10 +101,7 @@ enum InstrumentProperty {
 
 type InstrumentState = {
   numOfFrets: number;
-  firstNotes: {
-    note: Note;
-    id: string;
-  }[];
+  firstNotes: FirstNote[];
   noteFlipped: {
     [key: string]: boolean;
   };
