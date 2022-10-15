@@ -1,9 +1,11 @@
 import { Component, For } from 'solid-js';
 import { addString, instrumentState, removeString, setFirstNote, setNumOfFrets, toggleAllNotesFlipped } from '../../store/instrument-store';
 import Button from '../../ui-lib/Button';
+import Divider from '../../ui-lib/Divider';
 import Flex from '../../ui-lib/Flex';
 import FormInput from '../../ui-lib/FormInput';
 import Grid from '../../ui-lib/Grid';
+import Heading2 from '../../ui-lib/Heading2';
 import Input from '../../ui-lib/Input';
 import Select from '../../ui-lib/Select';
 import { Note } from '../instruments/parts/notes/note.enum';
@@ -15,17 +17,9 @@ const InstrumentSettings: Component = () => {
   }
 
   return (
-    <Flex direction="column">
-      <div>
-        <FormInput label="Number of frets">
-          <Input
-            onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
-            min={5}
-            max={24}
-            value={instrumentState.numOfFrets}
-          />
-        </FormInput>
-      </div>
+    <>
+      <Heading2>Settings</Heading2>
+      <Flex direction="column">
       <div>
         <Button
           onClick={() => removeString()}
@@ -36,22 +30,29 @@ const InstrumentSettings: Component = () => {
           label="Add string"
         />
       </div>
-      <div>
-        <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 8.5rem))">
-          <For each={instrumentState.strings}>{(_, i) =>
-            <FormInput label={`Tune ${instrumentState.strings.length - i()}`}>
-              <Select
-                value={instrumentState.strings[i()].firstNote}
-                onChange={(event) => onFirstNoteChange(event, i())}
-              >
-                <For each={availableNotes}>{(note) =>
-                  <option value={note}>{note}</option>
-                }</For>
-              </Select>
-            </FormInput>
-          }</For>
-        </Grid>
-      </div>
+      <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 8.5rem))">
+        <For each={instrumentState.strings}>{(_, i) =>
+          <FormInput label={`Tune ${instrumentState.strings.length - i()}`}>
+            <Select
+              value={instrumentState.strings[i()].firstNote}
+              onChange={(event) => onFirstNoteChange(event, i())}
+            >
+              <For each={availableNotes}>{(note) =>
+                <option value={note}>{note}</option>
+              }</For>
+            </Select>
+          </FormInput>
+        }</For>
+      </Grid>
+        <FormInput label="Number of frets">
+          <Input
+            onChange={(event) => setNumOfFrets(parseInt(event.currentTarget.value))}
+            min={5}
+            max={24}
+            value={instrumentState.numOfFrets}
+          />
+        </FormInput>
+      <Divider />
       <div>
         <Button
           onClick={() => toggleAllNotesFlipped()}
@@ -63,6 +64,7 @@ const InstrumentSettings: Component = () => {
         />
       </div>
     </Flex>
+    </>
   )
 };
 

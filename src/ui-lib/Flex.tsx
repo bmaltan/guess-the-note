@@ -7,7 +7,7 @@ const Flex: Component<FlexProps> = (props: FlexProps) => {
   const Container = styled('div')`
     display: flex;
     gap: 1rem;
-    justify-content: left;
+    justify-content: ${props.justifyContent || 'left'};
     flex-direction: ${props.direction as string};
   `;
 
@@ -23,4 +23,5 @@ export default Flex;
 interface FlexProps {
   children: JSX.Element;
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+  justifyContent?: 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 }

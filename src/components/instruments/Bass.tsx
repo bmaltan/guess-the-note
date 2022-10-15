@@ -5,6 +5,7 @@ import Strings from './parts/strings/Strings';
 import Frets from './parts/frets/Frets';
 import { instrumentState } from '../../store/instrument-store';
 import { preferencesState } from '../../store/preferences-store';
+import Heading2 from '../../ui-lib/Heading2';
 
 const Bass: Component = () => {
   const Container = styled('div')<{ leftHanded: boolean }>(
@@ -23,12 +24,15 @@ const Bass: Component = () => {
   );
 
   return (
-    <Container leftHanded={preferencesState.leftHanded}>
-      <Fretboard numOfFrets={instrumentState.numOfFrets}>
-        <Frets />
-        <Strings />
-      </Fretboard>
-    </Container>
+    <>
+      <Heading2>Fretboard</Heading2>
+      <Container leftHanded={preferencesState.leftHanded}>
+        <Fretboard numOfFrets={instrumentState.numOfFrets}>
+          <Frets />
+          <Strings />
+        </Fretboard>
+      </Container>
+    </>
   );
 };
 
