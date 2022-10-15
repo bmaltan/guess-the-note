@@ -48,7 +48,10 @@ const Game: Component = () => {
         <Show when={gameState.active}>
           <div>Correct guesses: {gameState.correctResponses}</div>
           <div>Incorrect guesses: {gameState.incorrectResponses}</div>
-          <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 2rem))">
+          <Grid
+            gap="1.5rem"
+            gridTemplateColumns="repeat(auto-fill, minmax(auto, 2rem))"
+          >
             <For each={Object.values(Note)}>{(n) =>
               <SingleNote
                 note={n}

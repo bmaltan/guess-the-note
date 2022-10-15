@@ -7,14 +7,17 @@ const Grid: Component<GridProps> = (props: GridProps) => {
   const Container = styled('div')<GridProps>(
     props => `
       display: grid;
-      gap: 1rem;
+      gap: ${props.gap ?? '1rem'};
       grid-template-columns: ${props.gridTemplateColumns};
       grid-template-rows: ${props.gridTemplateRows};
     `
   );
 
   return (
-    <Container gridTemplateColumns={props.gridTemplateColumns}>
+    <Container
+      gap={props.gap}
+      gridTemplateColumns={props.gridTemplateColumns}
+    >
       {childrenComponents()}
     </Container>
   );
@@ -24,6 +27,7 @@ export default Grid;
 
 interface GridProps {
   children: JSX.Element;
+  gap?: string;
   gridTemplateColumns?: string;
   gridTemplateRows?: string;
 }

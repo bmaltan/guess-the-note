@@ -9,6 +9,7 @@ const FormInput: Component<FormInputProps> = (props: FormInputProps) => {
     border: 1px solid #cdcdcd;
     align-content: center;
     width: fit-content;
+    min-width: 8.75rem;
     border-radius: 0.5rem;
     overflow: hidden;
     box-sizing: border-box;
