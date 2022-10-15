@@ -92,6 +92,9 @@ export const addString = (firstNote: Note) => {
 };
 
 export const removeString = () => {
+  if (instrumentState.strings.length === 1) {
+    return;
+  }
   const firstNotes = [...instrumentState.strings];
   firstNotes.shift();
   setInstrumentState({
