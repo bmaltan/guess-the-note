@@ -41,8 +41,11 @@ const Game: Component = () => {
             onClick={() => gameState.active ? onEndGame() : onStartGame()}
             label={gameState.active ? 'Stop' : 'Start'}
           />
-          <Show when={gameState.active}>
-            <span>Guess the highlighted note!</span>
+          <Show
+            when={!gameState.active}
+            fallback={<span>What's the highlighted note?</span>}
+          >
+            <span>Guess as many notes as you can!</span>
           </Show>
         </div>
         <Show when={gameState.active}>
