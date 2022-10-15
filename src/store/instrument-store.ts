@@ -6,6 +6,7 @@ import { TuningPreset } from "../shared/Preset";
 export const [instrumentState, setInstrumentState] = createStore<InstrumentState>({
   numOfFrets: 12,
   strings: [],
+  activeNotePos: '',
 });
 
 export const applyTuningPreset = (preset: TuningPreset) => {
@@ -99,6 +100,22 @@ export const removeString = () => {
   });
 };
 
+export const activateRandomNote = () => {
+  const randomString = Math.floor(Math.random() * instrumentState.strings.length);
+  const randomNote = Math.floor(Math.random() * instrumentState.numOfFrets);
+  setInstrumentState({
+    ...instrumentState,
+    activeNotePos: `${randomString}-${randomNote}`,
+  });
+};
+
+export const clearActiveNote = () => {
+  setInstrumentState({
+    ...instrumentState,
+    activeNotePos: '',
+  });
+}
+
 const atLeastOneNoteFlipped = () => {
   return instrumentState.strings.some((string) => {
     return Object.values(string.notesFlipped).some((flipped) => flipped);
@@ -108,4 +125,5 @@ const atLeastOneNoteFlipped = () => {
 type InstrumentState = {
   numOfFrets: number;
   strings: InstrumentString[];
+  activeNotePos: string;
 }

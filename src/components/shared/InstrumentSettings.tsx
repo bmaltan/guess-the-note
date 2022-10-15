@@ -1,7 +1,6 @@
 import { Component, For } from 'solid-js';
 import { addString, instrumentState, removeString, setFirstNote, setNumOfFrets, toggleAllNotesFlipped } from '../../store/instrument-store';
 import Button from '../../ui-lib/Button';
-import Divider from '../../ui-lib/Divider';
 import Flex from '../../ui-lib/Flex';
 import FormInput from '../../ui-lib/FormInput';
 import Grid from '../../ui-lib/Grid';
@@ -52,7 +51,6 @@ const InstrumentSettings: Component = () => {
             value={instrumentState.numOfFrets}
           />
         </FormInput>
-      <Divider />
       <div>
         <Button
           onClick={() => toggleAllNotesFlipped()}

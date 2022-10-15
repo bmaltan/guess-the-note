@@ -7,17 +7,23 @@ const Switch: Component<SwitchProps> = (props: SwitchProps) => {
   const Switch = styled('div')`
     text-align: ${props.textAlign || 'left'};
     padding: 0.25rem 0;
+    accent-color: black;
+  `;
+
+  const Label = styled('label')`
+    margin-right: 0.25rem;
+  `;
+
+  const Input = styled('input')`
+    transform: scale(1.25);
   `;
 
   return (
     <Switch>
-      <label
-        class="form-check-label"
-        for={id}
-      >
+      <Label for={id}>
         { props.label }
-      </label>
-      <input
+      </Label>
+      <Input
         type="checkbox"
         role="switch"
         id={id}

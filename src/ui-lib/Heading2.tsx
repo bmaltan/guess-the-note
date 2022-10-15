@@ -6,8 +6,13 @@ const Heading2: Component<Heading2Props> = (props: Heading2Props) => {
     font-size: 1.5rem;
     font-weight: 500;
     color: #333;
-    margin: 2rem 0 0 0;
+    margin: 1.5rem 0 0 0;
     padding: 0;
+
+    &:not(:first-child) {
+      border-top: 0.125rem solid #333;
+      padding-top: 0.5rem;
+    }
   `;
 
   return (

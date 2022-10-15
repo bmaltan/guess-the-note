@@ -1,14 +1,12 @@
-import { Component } from 'solid-js';
-import { Note } from './note.enum';
+import { Component, JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { preferencesState } from '../../../../store/preferences-store';
-import { getNoteFlipped, setNoteFlipped } from '../../../../store/instrument-store';
-import { convertFlatToSharp } from '../../../../utils/utils';
+import { Note } from './note.enum';
 
-const SingleNote: Component<NoteProps> = (props: NoteProps) => {
-  const SingleNote = styled('div')<SingleNoteProps>(
+const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
+  const SingleNote = styled('div')<Partial<SingleNoteProps>>(
     props => `
-      margin-top: -3.1rem;
+      margin-top: ${props.isOnFret ? '-3.1rem' : ''};
       border: 0.0625rem solid black;
       padding: 0.5rem;
       height: 1rem;
@@ -22,9 +20,10 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
       font-weight: bold;
       font-family: 'Arial';
-      letter-spacing: ${(props.naturalNote || preferencesState.displaySharps) ? 0 : '-0.25rem'};
+      letter-spacing: ${(props.active || props.naturalNote || preferencesState.displaySharps) ? 0 : '-0.25rem'};
       transform: ${props.leftHanded ? 'scaleX(-1)' : ''};
-      
+      ${props.active ? 'box-shadow: 0px 0px 0px 0.25rem black;' : ''}
+
       &:hover {
         transition: transform 0.2s;
         transform: ${props.leftHanded ? 'scale(-1.1, 1.1)' : 'scale(1.1)'};
@@ -32,29 +31,24 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     `
   );
 
-  const onClick = () => {
-    setNoteFlipped(props.noteIndex, props.stringIndex);
-  }
-
   const isHighlighted = () => {
     return preferencesState.highlightNaturalNotes && props.note.length === 1;
   }
 
-  const getNoteToDisplay = () => {
-    if (getNoteFlipped(props.noteIndex, props.stringIndex)) {
-      return preferencesState.displaySharps ? convertFlatToSharp(props.note) : props.note;
-    }
-    return '';
+  const isNaturalNote = () => {
+    return props.note.length === 1;
   }
 
   return (
     <SingleNote
       highlighted={isHighlighted()}
-      naturalNote={props.note.length === 1}
-      leftHanded={preferencesState.leftHanded}
-      onClick={onClick}
+      naturalNote={isNaturalNote()}
+      isOnFret={props.isOnFret}
+      active={props.active}
+      leftHanded={props.leftHanded}
+      onClick={props.onClick}
     >
-      { getNoteToDisplay() }
+      { props.children }
     </SingleNote>
   );
 };
@@ -62,13 +56,12 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
 export default SingleNote;
 
 interface SingleNoteProps {
-  highlighted: boolean;
-  naturalNote: boolean;
-  leftHanded: boolean;
-}
-
-interface NoteProps {
   note: Note;
-  stringIndex: number;
-  noteIndex: number;
+  isOnFret?: boolean;
+  naturalNote?: boolean;
+  highlighted?: boolean;
+  active?: boolean;
+  leftHanded?: boolean;
+  children: JSXElement;
+  onClick: () => void;
 }

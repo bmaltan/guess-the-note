@@ -2,7 +2,7 @@ import { Component, For } from 'solid-js';
 import { Note } from './note.enum';
 
 import { styled } from 'solid-styled-components';
-import SingleNote from '../notes/SingleNote';
+import NoteOnFret from './NoteOnFret';
 import { instrumentState } from '../../../../store/instrument-store';
 
 const Notes: Component<NotesProps> = (props: NotesProps) => {
@@ -30,7 +30,7 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
   return (
     <NotesOnString numOfFrets={instrumentState.numOfFrets}>
       <For each={getNotes(props.firstNote)}>{(n, i) =>
-        <SingleNote
+        <NoteOnFret
           note={n}
           stringIndex={props.stringIndex}
           noteIndex={i()}
