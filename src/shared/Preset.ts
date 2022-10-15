@@ -1,6 +1,6 @@
-import { FirstNote } from "./FirstNote";
+import { InstrumentString } from "./InstrumentString";
 
 export interface TuningPreset {
   name: string;
-  firstNotes: FirstNote[];
+  strings: Omit<InstrumentString, 'notesFlipped'>[];
 }

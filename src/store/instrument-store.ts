@@ -1,108 +1,111 @@
 import { createStore } from "solid-js/store";
 import { Note } from "../components/instruments/parts/notes/note.enum";
-import { FirstNote } from "../shared/FirstNote";
+import { InstrumentString } from "../shared/InstrumentString";
 import { TuningPreset } from "../shared/Preset";
-import { generateRandomId } from "../utils/utils";
 
 export const [instrumentState, setInstrumentState] = createStore<InstrumentState>({
   numOfFrets: 12,
-  firstNotes: [],
-  noteFlipped: {},
+  strings: [],
 });
 
 export const applyTuningPreset = (preset: TuningPreset) => {
-  setInstrumentState({
-    ...instrumentState,
-    firstNotes: preset.firstNotes,
-  });
+  preset.strings.forEach((string) => {
+    addString(string.firstNote);
+  })
 };
 
 export const setNumOfFrets = (numOfFrets: number) => {
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.NumOfFrets]: numOfFrets,
+    numOfFrets: numOfFrets,
   });
 };
 
-export const setNoteFlipped = (note: string, flipped: boolean) => {
+export const setNoteFlipped = (noteIndex: number, stringIndex: number) => {
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.NoteFlipped]: {
-      ...instrumentState.noteFlipped,
-      [note]: flipped,
-    },
+    strings: instrumentState.strings.map((string, index) => {
+      if (index === stringIndex) {
+        return {
+          ...string,
+          notesFlipped: {
+            ...string.notesFlipped,
+            [noteIndex]: !getNoteFlipped(noteIndex, stringIndex),
+          },
+        };
+      }
+      return string;
+    }),
   });
 };
 
-export const getNoteFlipped = (note: string) => {
-  return instrumentState.noteFlipped[note];
+export const getNoteFlipped = (noteIndex: number, stringIndex: number) => {
+  return instrumentState.strings[stringIndex].notesFlipped[noteIndex];
 };
 
-export const toggleAllNotesFlipped = () => {
-  const noteFlipped = {...instrumentState.noteFlipped};
-  const allNotesFlipped = Object.keys(noteFlipped).every((note) => noteFlipped[note]);
-  Object.keys(noteFlipped).forEach((note) => {
-    noteFlipped[note] = !allNotesFlipped;
-  });
+export const toggleAllNotesFlipped = (flipped?: boolean) => {
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.NoteFlipped]: noteFlipped,
+    strings: instrumentState.strings.map((string) => {
+      const newNotesFlipped = {...string.notesFlipped};
+      Object.keys(newNotesFlipped).forEach((noteIndex) => {
+        newNotesFlipped[noteIndex] = flipped ?? !atLeastOneNoteFlipped();
+      })
+      return {
+        ...string,
+        notesFlipped: newNotesFlipped,
+      };
+    }),
   });
-}
-
-export const resetNotesFlipped = () => {
-  setInstrumentState({
-    ...instrumentState,
-    [InstrumentProperty.NoteFlipped]: {},
-  });
-};
-
-export const getFirstNotes = () => {
-  return instrumentState.firstNotes;
 };
 
 export const setFirstNote = (index: number, firstNote: Note) => {
-  const firstNotes = instrumentState.firstNotes.map((note, i) => {
-    return (i === index) ? { ...note, note: firstNote } : note;
-  });
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.FirstNotes]: firstNotes,
+    strings: instrumentState.strings.map((string, i) => {
+      if (i === index) {
+        return {
+          ...string,
+          firstNote,
+        };
+      }
+      return string;
+    }),
   });
 };
 
-export const addString = () => {
-  const firstNotes = [...instrumentState.firstNotes];
-  firstNotes.unshift({
-    note: Note.A,
-    id: generateRandomId(),
-    string: firstNotes.length,
-  });
+export const addString = (firstNote: Note) => {
+  const strings = [...instrumentState.strings];
+  const newString: InstrumentString = {
+    firstNote: firstNote,
+    notesFlipped: {},
+  }
+  for (let i = 0; i < instrumentState.numOfFrets; i++) {
+    newString.notesFlipped[i] = false;
+  }
+  strings.unshift(newString);
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.FirstNotes]: firstNotes,
+    strings,
   });
 };
 
 export const removeString = () => {
-  const firstNotes = [...instrumentState.firstNotes];
+  const firstNotes = [...instrumentState.strings];
   firstNotes.shift();
   setInstrumentState({
     ...instrumentState,
-    [InstrumentProperty.FirstNotes]: firstNotes,
+    strings: firstNotes,
   });
 };
 
-enum InstrumentProperty {
-  NumOfFrets = 'numOfFrets',
-  FirstNotes = 'firstNotes',
-  NoteFlipped = 'noteFlipped',
+const atLeastOneNoteFlipped = () => {
+  return instrumentState.strings.some((string) => {
+    return Object.values(string.notesFlipped).some((flipped) => flipped);
+  });
 }
 
 type InstrumentState = {
   numOfFrets: number;
-  firstNotes: FirstNote[];
-  noteFlipped: {
-    [key: string]: boolean;
-  };
+  strings: InstrumentString[];
 }

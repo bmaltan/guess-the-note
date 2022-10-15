@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { Component } from 'solid-js';
 import { Note } from './note.enum';
 import { styled } from 'solid-styled-components';
 import { preferencesState } from '../../../../store/preferences-store';
@@ -32,10 +32,8 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
     `
   );
 
-  const [noteId] = createSignal(`${props.stringId}_${props.noteIndex}`);
-
   const onClick = () => {
-    setNoteFlipped(noteId(), !getNoteFlipped(noteId()));
+    setNoteFlipped(props.noteIndex, props.stringIndex);
   }
 
   const isHighlighted = () => {
@@ -43,7 +41,7 @@ const SingleNote: Component<NoteProps> = (props: NoteProps) => {
   }
 
   const getNoteToDisplay = () => {
-    if (getNoteFlipped(noteId())) {
+    if (getNoteFlipped(props.noteIndex, props.stringIndex)) {
       return preferencesState.displaySharps ? convertFlatToSharp(props.note) : props.note;
     }
     return '';
@@ -71,6 +69,6 @@ interface SingleNoteProps {
 
 interface NoteProps {
   note: Note;
-  stringId: string;
+  stringIndex: number;
   noteIndex: number;
 }

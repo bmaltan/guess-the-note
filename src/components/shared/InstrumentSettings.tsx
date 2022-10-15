@@ -1,5 +1,5 @@
 import { Component, For } from 'solid-js';
-import { addString, getFirstNotes, instrumentState, removeString, resetNotesFlipped, setFirstNote, setNumOfFrets } from '../../store/instrument-store';
+import { addString, instrumentState, removeString, setFirstNote, setNumOfFrets, toggleAllNotesFlipped } from '../../store/instrument-store';
 import Button from '../../ui-lib/Button';
 import Flex from '../../ui-lib/Flex';
 import FormInput from '../../ui-lib/FormInput';
@@ -32,16 +32,16 @@ const InstrumentSettings: Component = () => {
           label="Remove string"
         />
         <Button
-          onClick={() => addString()}
+          onClick={() => addString(instrumentState.strings[0]?.firstNote || Note.A)}
           label="Add string"
         />
       </div>
       <div>
         <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 7.5rem))">
-          <For each={getFirstNotes()}>{(_, i) =>
-            <FormInput label={`Tune ${getFirstNotes().length - i()}`}>
+          <For each={instrumentState.strings}>{(_, i) =>
+            <FormInput label={`Tune ${instrumentState.strings.length - i()}`}>
               <Select
-                value={instrumentState.firstNotes[i()].note}
+                value={instrumentState.strings[i()].firstNote}
                 onChange={(event) => onFirstNoteChange(event, i())}
               >
                 <For each={availableNotes}>{(note) =>
@@ -53,12 +53,12 @@ const InstrumentSettings: Component = () => {
         </Grid>
       </div>
       <div>
-        {/* <Button
+        <Button
           onClick={() => toggleAllNotesFlipped()}
           label="Toggle all"
-        /> */}
+        />
         <Button
-          onClick={() => resetNotesFlipped()}
+          onClick={() => toggleAllNotesFlipped(false)}
           label="Reset"
         />
       </div>

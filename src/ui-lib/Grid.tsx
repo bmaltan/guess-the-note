@@ -1,7 +1,7 @@
 import { children, Component, JSX } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
-const Flex: Component<GridProps> = (props: GridProps) => {
+const Grid: Component<GridProps> = (props: GridProps) => {
   const childrenComponents = children(() => props.children);
 
   const Container = styled('div')<GridProps>(
@@ -20,7 +20,7 @@ const Flex: Component<GridProps> = (props: GridProps) => {
   );
 };
 
-export default Flex;
+export default Grid;
 
 interface GridProps {
   children: JSX.Element;

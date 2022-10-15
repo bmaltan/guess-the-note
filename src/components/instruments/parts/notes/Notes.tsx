@@ -32,7 +32,7 @@ const Notes: Component<NotesProps> = (props: NotesProps) => {
       <For each={getNotes(props.firstNote)}>{(n, i) =>
         <SingleNote
           note={n}
-          stringId={props.stringId}
+          stringIndex={props.stringIndex}
           noteIndex={i()}
         />
       }</For>
@@ -44,5 +44,5 @@ export default Notes;
 
 interface NotesProps {
   firstNote: Note;
-  stringId: string;
+  stringIndex: number;
 }

@@ -4,14 +4,16 @@ import String from './String';
 import Notes from '../notes/Notes';
 
 const Strings: Component = () => {
+
+
   return (
     <>
-      <For each={instrumentState.firstNotes}>{(note) =>
+      <For each={instrumentState.strings}>{(string, i) =>
         <>
           <String />
           <Notes
-            firstNote={note.note}
-            stringId={note.id}
+            firstNote={string.firstNote}
+            stringIndex={i()}
           />
         </>
       }</For>
