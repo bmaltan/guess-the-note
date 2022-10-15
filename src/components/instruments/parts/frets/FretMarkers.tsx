@@ -23,8 +23,9 @@ const FretMarkers: Component<FretMarkerProps> = (props: FretMarkerProps) => {
           content: '${props.index + 1}';
           position: absolute;
           top: -2rem;
-          right: 0.25rem;
           font-weight: bold;
+          ${preferencesState.leftHanded ? 'left' : 'right'}: 0.25rem;
+          ${preferencesState.leftHanded ? 'transform: scaleX(-1);' : ''}
         }
       }
     `
