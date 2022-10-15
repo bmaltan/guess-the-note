@@ -15,9 +15,9 @@ const App: Component = () => {
 
   return (
     <Flex direction="column">
+      <InstrumentSettings />
       <Bass />
       <Game />
-      <InstrumentSettings />
       <Preferences />
     </Flex>
   );
