@@ -11,11 +11,12 @@ const FormInput: Component<FormInputProps> = (props: FormInputProps) => {
     width: fit-content;
     border-radius: 0.5rem;
     overflow: hidden;
-    height: 2rem;
+    box-sizing: border-box;
+    height: 2.25rem;
   `;
 
   const Label = styled('div')`
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 1rem;
     background: #f0f0f0;
     border-right: 1px solid #cdcdcd;
     display: flex;

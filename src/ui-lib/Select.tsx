@@ -7,6 +7,7 @@ const Select: Component<SelectProps> = (props: SelectProps) => {
   const Select = styled('select')`
     font-size: 1rem;
     border: none;
+    padding-left: 0.5rem;
   `;
 
   return (

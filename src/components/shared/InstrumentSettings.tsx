@@ -37,7 +37,7 @@ const InstrumentSettings: Component = () => {
         />
       </div>
       <div>
-        <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 7.5rem))">
+        <Grid gridTemplateColumns="repeat(auto-fill, minmax(auto, 8.5rem))">
           <For each={instrumentState.strings}>{(_, i) =>
             <FormInput label={`Tune ${instrumentState.strings.length - i()}`}>
               <Select
