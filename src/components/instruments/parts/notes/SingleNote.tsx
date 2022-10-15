@@ -1,9 +1,12 @@
-import { Component, JSXElement } from 'solid-js';
+import { Component, createEffect, JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { preferencesState } from '../../../../store/preferences-store';
 import { Note } from './note.enum';
 
 const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
+  let ref: HTMLDivElement | undefined = undefined;
+  ref = undefined;
+
   const SingleNote = styled('div')<Partial<SingleNoteProps>>(
     props => `
       margin-top: ${props.isOnFret ? '-3.1rem' : ''};
@@ -31,6 +34,12 @@ const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
     `
   );
 
+  createEffect(() => {
+    if (props.active) {
+      ref?.scrollIntoView({inline: 'center', behavior: 'smooth'});
+    }
+  })
+
   const isHighlighted = () => {
     return preferencesState.highlightNaturalNotes && props.note.length === 1;
   }
@@ -41,6 +50,7 @@ const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
 
   return (
     <SingleNote
+      ref={ref}
       highlighted={isHighlighted()}
       naturalNote={isNaturalNote()}
       isOnFret={props.isOnFret}

@@ -8,6 +8,7 @@ const Grid: Component<GridProps> = (props: GridProps) => {
     props => `
       display: grid;
       gap: ${props.gap ?? '1rem'};
+      padding-right: ${props.gap ?? '0'};
       grid-template-columns: ${props.gridTemplateColumns};
       grid-template-rows: ${props.gridTemplateRows};
     `
