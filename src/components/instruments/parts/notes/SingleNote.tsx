@@ -38,7 +38,7 @@ const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
 
   createEffect(() => {
     if (props.active) {
-      ref?.scrollIntoView({inline: 'center', behavior: 'smooth'});
+      ref?.scrollIntoView({block: 'nearest', inline: 'center', behavior: 'smooth'});
     }
   })
 
