@@ -1,5 +1,6 @@
 import { Component, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
+import { getFretWidths } from '../../../../shared/theme';
 import { instrumentState } from '../../../../store/instrument-store';
 import FretLine from './FretLine';
 import FretMarkers from './FretMarkers';
@@ -8,7 +9,7 @@ const Frets: Component = () => {
   const Frets = styled('div')<{numOfFrets: number}>(
     props => `
       display: grid;
-      grid-template-columns: repeat(${props.numOfFrets}, 1fr);
+      grid-template-columns: ${getFretWidths(props.numOfFrets)};
       width: 100%;
       position: absolute;
       height: calc(100% - 2rem);

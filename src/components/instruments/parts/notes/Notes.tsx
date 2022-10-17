@@ -4,12 +4,13 @@ import { Note } from './note.enum';
 import { styled } from 'solid-styled-components';
 import NoteOnFret from './NoteOnFret';
 import { instrumentState } from '../../../../store/instrument-store';
+import { getFretWidths } from '../../../../shared/theme';
 
 const Notes: Component<NotesProps> = (props: NotesProps) => {
   const NotesOnString = styled('div')<{numOfFrets: number}>(
     props => `
       display: grid;
-      grid-template-columns: repeat(${props.numOfFrets}, 1fr);
+      grid-template-columns: ${getFretWidths(props.numOfFrets)};
       justify-items: center;
     `
   );

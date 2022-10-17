@@ -15,7 +15,7 @@ const FretMarkers: Component<FretMarkerProps> = (props: FretMarkerProps) => {
     props => `
       background: #a1a1a1;
       height: calc(100% - 3rem);
-      width: 1.25rem;
+      width: 1rem;
       border: 0.125rem solid black;
 
       @media screen and (max-width: 37.5rem) {
