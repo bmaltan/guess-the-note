@@ -22,12 +22,10 @@ const SingleNote: Component<SingleNoteProps> = (props: SingleNoteProps) => {
       border-radius: 1rem;
       color: ${props.highlighted ? 'white' : 'black'};
       background: ${props.highlighted ? '#474747' : '#f0f0f0'};
-      font-weight: bold;
-      font-family: 'Arial';
-      letter-spacing: ${(props.active || props.naturalNote || preferencesState.displaySharps) ? 0 : '-0.25rem'};
       ${props.leftHanded ? 'transform: scaleX(-1);' : ''}
       ${props.active ? 'box-shadow: 0px 0px 0px 0.25rem black;' : ''}
       ${ props.disabled ? 'opacity: 0.5;' : ''}
+      font-family: 'Arial Unicode MS';
 
       &:hover {
         transition: transform 0.2s;
